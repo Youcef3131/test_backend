@@ -14,7 +14,7 @@ const PORT = 3000;
 app.use(express.json());
 
 // Define routes
-app.get('/', (req, res) => {
+app.get('/hello', (req, res) => {
     res.send('Welcome to my REST API!');
 });
 
