@@ -3,30 +3,27 @@ const { PrismaClient } = require('@prisma/client')
 
 const prisma = new PrismaClient()
 
-async function main() {
+// Import required modules
+const express = require('express');
+
+// Create an instance of Express
+const app = express();
+const PORT = 3000;
+
+// Middleware to parse JSON request body
+app.use(express.json());
+
+// Define routes
+app.get('/', (req, res) => {
+    res.send('Welcome to my REST API!');
+});
 
 
-    // const user = await prisma.user.create({
-    //     data:{
-    //         name:"Alice",
-    //         email:"email.eacilde@gmail.com",
-    //     }
-    // });
-const users=await prisma.user.findMany({
-    where:{
-        name:"Alice",
-    }
+app.get('/books', (req, res) => {
 
-})
-  console.log(users);
-}
-
-main()
-  .then(async () => {
-    await prisma.$disconnect()
-  })
-  .catch(async (e) => {
-    console.error(e)
-    await prisma.$disconnect()
-    process.exit(1)
-  })
+  const usres=prisma.user.findMany()
+  res.status(200).json(usres);
+});
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
