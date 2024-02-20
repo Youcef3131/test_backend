@@ -19,10 +19,11 @@ app.get('/hello', (req, res) => {
 });
 
 
-app.get('/users', (req, res) => {
+app.get('/users',async (req, res) => {
 
-  const usres=prisma.user.findMany()
+  const usres=await prisma.user.findMany()
   res.status(200).json(usres);
+  console.log(usres);
 });
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
