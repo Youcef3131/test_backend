@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 });
 
 
-app.get('/books', (req, res) => {
+app.get('/users', (req, res) => {
 
   const usres=prisma.user.findMany()
   res.status(200).json(usres);
